@@ -43,6 +43,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendMsgBtnClicked(view: View) {
-        
+
     }
 }
