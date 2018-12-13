@@ -1,8 +1,12 @@
 package com.example.madinaochilova.smack.Services
 
 import android.graphics.Color
+import com.example.madinaochilova.smack.Controller.App
 import java.util.*
 
+/**
+ * Created by madinaochilova on 9/4/17.
+ */
 object UserDataService {
 
     var id = ""
@@ -17,9 +21,9 @@ object UserDataService {
         avatarName = ""
         email = ""
         name = ""
-        AuthService.authToken = ""
-        AuthService.userEmail = ""
-        AuthService.isLoggedIn = false
+        App.prefs.authToken = ""
+        App.prefs.userEmail = ""
+        App.prefs.isLoggedIn = false
     }
 
     fun returnAvatarColor(components: String) : Int {
@@ -32,13 +36,14 @@ object UserDataService {
         var g = 0
         var b = 0
 
-        var scanner = Scanner(strippedColor)
+        val scanner = Scanner(strippedColor)
         if (scanner.hasNext()) {
             r = (scanner.nextDouble() * 255).toInt()
             g = (scanner.nextDouble() * 255).toInt()
             b = (scanner.nextDouble() * 255).toInt()
         }
 
-        return Color.rgb(r, g, b)
+        return Color.rgb(r,g,b)
     }
+
 }

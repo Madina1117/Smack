@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         loginSpinner.visibility = View.INVISIBLE
     }
 
-    fun loginLoginBtnClicked (view: View) {
+    fun loginLoginBtnClicked(view: View) {
         enableSpinner(true)
         val email = loginEmailText.text.toString()
         val password = loginPasswordText.text.toString()
@@ -44,14 +44,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun loginCreateUserBtnClicked (view: View) {
-        val createUserIntent = Intent (this, CreateUserActivity::class.java)
+    fun loginCreateUserBtnClicked(view: View) {
+        val createUserIntent = Intent(this, CreateUserActivity::class.java)
         startActivity(createUserIntent)
         finish()
     }
 
     fun errorToast() {
-        Toast.makeText(this, "Something went wrong, please try again.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Something went wrong, please try again.",
+                Toast.LENGTH_LONG).show()
         enableSpinner(false)
     }
 
@@ -61,7 +62,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             loginSpinner.visibility = View.INVISIBLE
         }
-
         loginLoginBtn.isEnabled = !enable
         loginCreateUserBtn.isEnabled = !enable
     }
