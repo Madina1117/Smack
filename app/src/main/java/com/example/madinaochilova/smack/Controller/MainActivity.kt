@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         setupAdapters()
+        LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
+                IntentFilter(BROADCAST_USER_DATA_CHANGE))
 
         channel_list.setOnItemClickListener { _, _, i, _ ->
 
@@ -75,13 +77,6 @@ class MainActivity : AppCompatActivity() {
         if (App.prefs.isLoggedIn) {
             AuthService.findUserByEmail(this){}
         }
-    }
-
-    override fun onResume() {
-        LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
-                IntentFilter(BROADCAST_USER_DATA_CHANGE))
-
-        super.onResume()
     }
 
     override fun onDestroy() {
@@ -150,6 +145,7 @@ class MainActivity : AppCompatActivity() {
             userImageNavHeader.setImageResource(R.drawable.profiledefault)
             userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)
             loginBtnNavHeader.text = "Login"
+            mainChannelName.text = "Please log in"
 
         } else {
             val loginIntent = Intent(this, LoginActivity::class.java)
@@ -165,7 +161,7 @@ class MainActivity : AppCompatActivity() {
             builder.setView(dialogView)
                     .setPositiveButton("Add") { _, _ ->
                         // perform some logic when clicked
-                        val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelDescTxt)
+                        val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelNameTxt)
                         val descTextField = dialogView.findViewById<EditText>(R.id.addChannelDescTxt)
                         val channelName = nameTextField.text.toString()
                         val channelDesc = descTextField.text.toString()
